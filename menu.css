@@ -1,0 +1,194 @@
+/* Portfolio navigation. Scoped so section typography and imagery remain intact. */
+#dhwani-overlay-nav {
+  position: fixed;
+  z-index: 16002;
+  inset: 0 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  min-height: 76px;
+  padding: 12px clamp(18px, 3vw, 42px);
+  box-sizing: border-box;
+  pointer-events: none;
+  color: #fff;
+}
+#dhwani-overlay-nav a, #dhwani-overlay-nav button { pointer-events: auto; }
+#dhwani-overlay-nav .dhwani-nav-mark,
+#dhwani-overlay-nav .dhwani-nav-wordmark {
+  width: fit-content;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Outfit", system-ui, sans-serif;
+  font-weight: 800;
+}
+#dhwani-overlay-nav .dhwani-nav-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 13px;
+  background: rgba(8,8,15,.75);
+  font-size: 17px;
+  letter-spacing: -.1em;
+  backdrop-filter: blur(14px);
+}
+#dhwani-overlay-nav .dhwani-mark-name { display: none; }
+/* Keep the hero image and heading clear; the other sections retain both brand marks. */
+.dhwani-on-hero #dhwani-overlay-nav .dhwani-nav-mark,
+.dhwani-on-hero #dhwani-overlay-nav .dhwani-nav-wordmark { display: none; }
+#dhwani-overlay-nav .dhwani-nav-wordmark {
+  grid-column: 2;
+  font-size: clamp(13px,1.15vw,17px);
+  letter-spacing: .2em;
+  text-shadow: 0 1px 12px rgba(0,0,0,.8);
+}
+#dhwani-overlay-nav .dhwani-nav-burger {
+  grid-column: 3;
+  justify-self: end;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 13px;
+  background: rgba(8,8,15,.75);
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  transition: background .25s ease, border-color .25s ease;
+}
+#dhwani-overlay-nav .dhwani-nav-burger::before,
+#dhwani-overlay-nav .dhwani-nav-burger::after {
+  content: "";
+  position: absolute;
+  width: 23px;
+  height: 2px;
+  border-radius: 2px;
+  background: #fff;
+  transition: transform .25s ease, background .25s ease;
+}
+#dhwani-overlay-nav .dhwani-nav-burger::before { transform: translateY(-4px); }
+#dhwani-overlay-nav .dhwani-nav-burger::after { transform: translateY(4px); }
+#dhwani-overlay-nav .dhwani-nav-burger.is-active::before { transform: rotate(45deg); }
+#dhwani-overlay-nav .dhwani-nav-burger.is-active::after { transform: rotate(-45deg); }
+#dhwani-overlay-nav .dhwani-nav-burger:hover { background: #fff; }
+#dhwani-overlay-nav .dhwani-nav-burger:hover::before,
+#dhwani-overlay-nav .dhwani-nav-burger:hover::after { background: #08080f; }
+#dhwani-overlay-nav :is(a,button):focus-visible,
+#dhwani-overlay-menu a:focus-visible {
+  outline: 3px solid #bba7ff;
+  outline-offset: 4px;
+}
+
+#dhwani-overlay-wipe {
+  position: fixed;
+  z-index: 16000;
+  inset: 0;
+  display: flex;
+  pointer-events: none;
+}
+#dhwani-overlay-wipe .dhwani-overlay-block {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  margin-right: -2px;
+  background: #08080d;
+  clip-path: polygon(0% 0%,100% 0%,100% 0%,0% 0%);
+}
+#dhwani-overlay-menu {
+  position: fixed;
+  z-index: 16001;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 88px clamp(23px,8vw,120px) 36px;
+  box-sizing: border-box;
+  overflow-y: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  pointer-events: none;
+  color: #fff;
+  font-family: "Space Mono", ui-monospace, monospace;
+}
+#dhwani-overlay-menu[aria-hidden="false"] { pointer-events: auto; overflow-y: auto; }
+#dhwani-overlay-menu::-webkit-scrollbar { display: none; width: 0; }
+#dhwani-overlay-menu .dhwani-menu-inner { width: min(100%,1100px); margin: auto; }
+#dhwani-overlay-menu .dhwani-menu-item { opacity: 0; }
+#dhwani-overlay-menu .dhwani-menu-item {
+  display: grid;
+  grid-template-columns: 74px minmax(0,1fr) auto;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid rgba(255,255,255,.18);
+  padding: clamp(11px,2vh,19px) 0;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+#dhwani-overlay-menu .dhwani-menu-item:last-child { border-bottom: 1px solid rgba(255,255,255,.18); }
+#dhwani-overlay-menu .dhwani-menu-index,
+#dhwani-overlay-menu .dhwani-menu-explore {
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+#dhwani-overlay-menu .dhwani-menu-index { color: #a688ff; }
+#dhwani-overlay-menu .dhwani-menu-name {
+  color: #fff;
+  font: 800 clamp(28px,4vw,60px)/1 "Outfit",sans-serif;
+  letter-spacing: -.055em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color .2s ease, transform .2s ease;
+}
+#dhwani-overlay-menu .dhwani-menu-item:hover .dhwani-menu-name,
+#dhwani-overlay-menu .dhwani-menu-item:focus-visible .dhwani-menu-name { color: #bca6ff; transform: translateX(8px); }
+#dhwani-overlay-menu .dhwani-menu-explore { color: #a9a9b5; white-space: nowrap; }
+
+/* The hero's older desktop/mobile nav is replaced by the site-wide control. */
+
+
+/* Gives the menu the same behavior if the animation library is unavailable. */
+.dhwani-menu-fallback #dhwani-overlay-wipe .dhwani-overlay-block {
+  transition: clip-path 1s cubic-bezier(.645,.045,.355,1);
+  transition-delay: calc(var(--block-index) * 75ms);
+}
+.dhwani-menu-fallback #dhwani-overlay-menu .dhwani-menu-item {
+  transition: opacity .3s ease;
+  transition-delay: calc(450ms + var(--item-index) * 50ms);
+}
+.dhwani-menu-fallback.dhwani-menu-open #dhwani-overlay-wipe .dhwani-overlay-block {
+  clip-path: polygon(0% 0%,100% 0%,100% 100%,0% 100%);
+}
+.dhwani-menu-fallback.dhwani-menu-open #dhwani-overlay-menu .dhwani-menu-item { opacity: 1; }
+
+@media (max-width: 700px) {
+  #dhwani-overlay-nav { min-height: 68px; padding: 9px 18px; }
+  #dhwani-overlay-nav .dhwani-nav-wordmark { font-size: 11px; letter-spacing: .12em; white-space: nowrap; }
+  #dhwani-overlay-nav .dhwani-nav-burger { grid-column: 3; }
+  #dhwani-overlay-menu { padding: 78px 24px 25px; }
+  #dhwani-overlay-menu .dhwani-menu-item { grid-template-columns: 38px minmax(0,1fr) 14px; gap: 8px; padding: clamp(12px,2vh,18px) 0; }
+  #dhwani-overlay-menu .dhwani-menu-name { font-size: clamp(27px,8vw,42px); }
+  #dhwani-overlay-menu .dhwani-menu-explore { font-size: 16px; }
+  #dhwani-overlay-menu .dhwani-menu-explore span { display: none; }
+}
+@media (max-height: 650px) {
+  #dhwani-overlay-menu .dhwani-menu-item { padding-block: 9px; }
+  #dhwani-overlay-menu .dhwani-menu-name { font-size: clamp(23px,5vh,40px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #dhwani-overlay-wipe .dhwani-overlay-block,
+  #dhwani-overlay-menu .dhwani-menu-item { transition: none !important; }
+  #dhwani-overlay-nav .dhwani-nav-burger::before,
+  #dhwani-overlay-nav .dhwani-nav-burger::after { transition: none !important; }
+}
+
+/* Fluid overlay stays clear of clicks, taps and the navigation controls. */
+.fluid-cursor-canvas{position:fixed;z-index:15000;inset:0;width:100%;height:100%;max-width:none;pointer-events:none;touch-action:none}
+html{scroll-behavior:smooth}
+#dhwani-hero,#education,#experience,#dhwani-expertise,#industry,#tools,#dhwani-next-root{scroll-margin-top:76px}
+@media(max-width:700px){#dhwani-hero,#education,#experience,#dhwani-expertise,#industry,#tools,#dhwani-next-root{scroll-margin-top:68px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
